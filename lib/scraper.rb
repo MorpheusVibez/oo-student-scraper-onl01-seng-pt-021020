@@ -12,6 +12,7 @@ class Scraper
       student.location = doc.css(".card-text-container").css("p").text
       student.profile_url = doc.css(".student-card").css("a").first["href"]
     # binding.pry
+    end
   end
 
   def self.scrape_profile_page(profile_url)
