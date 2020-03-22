@@ -15,7 +15,7 @@ class Scraper
       :name => card.css(".card-text-container").css("h4").text
       :location => card.css(".card-text-container").css("p").text
       :profile_url => card.css(".student-card").css("a").first["href"]
-    }end
+    }
     # binding.pry
     end
     students
