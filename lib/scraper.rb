@@ -11,12 +11,26 @@ class Scraper
     students = []
 
     doc.css(".card-text-container").each do |card|
+      html = open(index_url)
 
-      :name => card.css(".card-text-container").css("h4").text
-      :location => card.css(".card-text-container").css("p").text
-      # :profile_url => card.css(".student-card").css("a").first["href"]
+          page = Nokogiri::HTML(html)
 
-    # binding.pry
+          students = []
+
+          page.css("div.student-card").each do |student|
+
+            students << {
+               :name => student.css("h4.student-name").text,
+               :location => student.css("p.student-location").text,
+               :profile_url => student.children[1].attributes["href"].value
+            }
+          end
+          students
+    #   :name => card.css(".card-text-container").css("h4").text
+    #   :location => card.css(".card-text-container").css("p").text
+    #   # :profile_url => card.css(".student-card").css("a").first["href"]
+    #
+    # # binding.pry
     end
     students
   end
